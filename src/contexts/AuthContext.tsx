@@ -19,9 +19,18 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  // Passwords are kept only in memory, never persisted to localStorage
   const [users, setUsers] = useState<User[]>(() => {
     const stored = localStorage.getItem('vett_users');
-    return stored ? JSON.parse(stored) : [...MOCK_USERS];
+    if (stored) {
+      const savedUsers: Omit<User, 'password'>[] = JSON.parse(stored);
+      // Merge saved users with mock passwords (mock users only)
+      return savedUsers.map(su => {
+        const mock = MOCK_USERS.find(m => m.id === su.id);
+        return { ...su, password: mock?.password ?? '' } as User;
+      });
+    }
+    return [...MOCK_USERS];
   });
 
   const [user, setUser] = useState<Omit<User, 'password'> | null>(() => {
@@ -29,8 +38,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return stored ? JSON.parse(stored) : null;
   });
 
+  // Store users WITHOUT passwords in localStorage
   useEffect(() => {
-    localStorage.setItem('vett_users', JSON.stringify(users));
+    const safeUsers = users.map(({ password, ...u }) => u);
+    localStorage.setItem('vett_users', JSON.stringify(safeUsers));
   }, [users]);
 
   useEffect(() => {
