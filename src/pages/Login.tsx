@@ -146,6 +146,11 @@ export default function LoginPage() {
               </div>
             )}
           </form>
+          <div className="mt-4 text-center border-t pt-4">
+            <a href="/forge" className="text-sm text-primary hover:underline font-medium">
+              🔥 Student Squad? Enter The Forge →
+            </a>
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -1,0 +1,145 @@
+import { Squad, SquadMember, ProblemBankEntry, ForgeTodo, ForgeKPI, LetterOfIntent } from '@/types/forge';
+
+export const MOCK_SQUAD_MEMBERS: SquadMember[] = [
+  { id: 'sm-1', name: 'Alice Nguyen', email: 'alice@forge.com', password: 'password', businessRole: 'ceo', squadId: 'squad-1' },
+  { id: 'sm-2', name: 'Brian Okafor', email: 'brian@forge.com', password: 'password', businessRole: 'cto', squadId: 'squad-1' },
+  { id: 'sm-3', name: 'Clara Mbeki', email: 'clara@forge.com', password: 'password', businessRole: 'cmo', squadId: 'squad-1' },
+  { id: 'sm-4', name: 'David Patel', email: 'david@forge.com', password: 'password', businessRole: 'cfo', squadId: 'squad-1' },
+  { id: 'sm-5', name: 'Eva Santos', email: 'eva@forge.com', password: 'password', businessRole: 'coo', squadId: 'squad-1' },
+];
+
+export const MOCK_SQUADS: Squad[] = [
+  {
+    id: 'squad-1',
+    name: 'Phoenix Squad',
+    members: MOCK_SQUAD_MEMBERS,
+    selectedProblemId: null,
+    forgeStartDate: new Date().toISOString(),
+    forgeDay: 1,
+  },
+];
+
+export const MOCK_PROBLEM_BANK: ProblemBankEntry[] = [
+  {
+    id: 'pb-1',
+    title: 'Last-Mile Cold Chain Logistics Gap',
+    description: 'Small-scale farmers lose 30-40% of perishable produce due to broken cold chain in the last mile between farm and urban markets. No affordable refrigerated transport exists for quantities under 500kg.',
+    industry: 'Agriculture & Logistics',
+    marketSize: '$2.4B addressable in Sub-Saharan Africa',
+    targetDemographic: 'Smallholder farmers with 1-10 hectares, age 25-55',
+    competitorLandscape: 'ColdHubs (Nigeria, solar cold rooms), Inspira Farms (Kenya, processing), but no last-mile transport solution',
+    urgencyRating: 'critical',
+    geographicScope: 'East Africa — Kenya, Uganda, Tanzania',
+    evidenceLinks: ['WHO Post-Harvest Loss Report 2024', 'FAO Cold Chain Study'],
+    submittedByAnalystId: 'analyst-1',
+    submittedByName: 'James Mitchell',
+    dateSubmitted: '2025-12-15',
+    status: 'available',
+    claimedBySquadId: null,
+  },
+  {
+    id: 'pb-2',
+    title: 'Mental Health Access for Remote Workers',
+    description: 'Remote workers in emerging markets lack affordable, culturally relevant mental health support. 68% report burnout but only 12% have accessed professional help due to cost and stigma barriers.',
+    industry: 'Health & Wellness',
+    marketSize: '$890M in emerging market remote workforce',
+    targetDemographic: 'Remote workers aged 22-40 in developing economies',
+    competitorLandscape: 'BetterHelp (expensive, US-centric), Talkspace (limited languages), local providers lack digital presence',
+    urgencyRating: 'high',
+    geographicScope: 'Global — focus on Africa, Southeast Asia, Latin America',
+    evidenceLinks: ['Remote Work Mental Health Survey 2024', 'ILO Workforce Report'],
+    submittedByAnalystId: 'analyst-2',
+    submittedByName: 'Sarah Chen',
+    dateSubmitted: '2025-11-28',
+    status: 'available',
+    claimedBySquadId: null,
+  },
+  {
+    id: 'pb-3',
+    title: 'Financial Literacy Gap for Gig Workers',
+    description: 'Gig economy workers lack structured financial management tools. 78% have no savings and 65% don\'t understand tax obligations, leading to financial instability.',
+    industry: 'FinTech & Education',
+    marketSize: '$1.7B globally in gig worker financial services',
+    targetDemographic: 'Gig workers aged 18-35, earning $200-$2000/month',
+    competitorLandscape: 'Quickbooks (too complex), Wave (US-focused), M-Pesa savings (limited features)',
+    urgencyRating: 'high',
+    geographicScope: 'Africa, India, Southeast Asia',
+    evidenceLinks: ['World Bank Gig Economy Report', 'MasterCard Financial Inclusion Index'],
+    submittedByAnalystId: 'analyst-1',
+    submittedByName: 'James Mitchell',
+    dateSubmitted: '2026-01-10',
+    status: 'available',
+    claimedBySquadId: null,
+  },
+  {
+    id: 'pb-4',
+    title: 'Waste-to-Energy in Urban Informal Settlements',
+    description: 'Informal settlements generate 2-5 tons of organic waste daily per 10,000 residents with zero formal waste management. This waste could generate biogas for cooking fuel, replacing charcoal.',
+    industry: 'Clean Energy & Waste Management',
+    marketSize: '$560M in urban Africa alone',
+    targetDemographic: 'Residents of informal settlements, local waste collectors, small business owners',
+    competitorLandscape: '(K)lean Industries (industrial scale only), Sanergy (sanitation focused), no micro-scale biogas solutions',
+    urgencyRating: 'critical',
+    geographicScope: 'Nairobi, Lagos, Dar es Salaam, Kampala',
+    evidenceLinks: ['UN-Habitat Waste Report 2024', 'UNEP Africa Waste Outlook'],
+    submittedByAnalystId: 'analyst-2',
+    submittedByName: 'Sarah Chen',
+    dateSubmitted: '2026-02-01',
+    status: 'available',
+    claimedBySquadId: null,
+  },
+  {
+    id: 'pb-5',
+    title: 'Affordable Skills Verification for Blue-Collar Hiring',
+    description: 'Employers in construction, manufacturing, and services spend 3-4 weeks verifying skills of blue-collar workers. 40% of hires are mismatched, costing businesses $3,200 per bad hire on average.',
+    industry: 'HR Tech & Education',
+    marketSize: '$3.1B in emerging markets',
+    targetDemographic: 'SME employers with 10-200 workers, blue-collar job seekers',
+    competitorLandscape: 'LinkedIn (white-collar focus), Jobberman (listings only), no practical skills verification platform',
+    urgencyRating: 'medium',
+    geographicScope: 'Sub-Saharan Africa, South Asia',
+    evidenceLinks: ['ILO Skills Mismatch Report', 'McKinsey Future of Work Africa'],
+    submittedByAnalystId: 'analyst-1',
+    submittedByName: 'James Mitchell',
+    dateSubmitted: '2026-02-20',
+    status: 'available',
+    claimedBySquadId: null,
+  },
+];
+
+export const MOCK_FORGE_TODOS: ForgeTodo[] = [
+  // Foundation phase (days 1-15)
+  { id: 'ft-1', squadId: 'squad-1', memberId: null, title: 'Review all problems in the bank', description: 'Each member reads through the problem bank and rates their top 3 choices', completed: false, dueDay: 3, category: 'market-research' },
+  { id: 'ft-2', squadId: 'squad-1', memberId: null, title: 'Squad vote on problem selection', description: 'Meet as a squad and vote on which problem to tackle', completed: false, dueDay: 5, category: 'business-model' },
+  { id: 'ft-3', squadId: 'squad-1', memberId: 'sm-1', title: 'Draft initial company vision & mission', description: 'CEO writes a 1-page vision and mission statement', completed: false, dueDay: 8, category: 'business-model' },
+  { id: 'ft-4', squadId: 'squad-1', memberId: 'sm-4', title: 'Create initial budget framework', description: 'CFO outlines a basic financial framework for the first 90 days', completed: false, dueDay: 10, category: 'financial-planning' },
+  { id: 'ft-5', squadId: 'squad-1', memberId: 'sm-3', title: 'Map target customer personas', description: 'CMO creates 3 detailed customer personas', completed: false, dueDay: 12, category: 'market-research' },
+  { id: 'ft-6', squadId: 'squad-1', memberId: 'sm-2', title: 'Research technical feasibility', description: 'CTO assesses what technology stack/approach could solve the problem', completed: false, dueDay: 14, category: 'operations' },
+  { id: 'ft-7', squadId: 'squad-1', memberId: 'sm-5', title: 'Draft operational workflow', description: 'COO maps the end-to-end operational process', completed: false, dueDay: 15, category: 'operations' },
+  // Deep Dive phase (days 16-40)
+  { id: 'ft-8', squadId: 'squad-1', memberId: null, title: 'Conduct 10 customer interviews', description: 'Each member conducts 2 interviews with potential customers', completed: false, dueDay: 25, category: 'customer-discovery' },
+  { id: 'ft-9', squadId: 'squad-1', memberId: 'sm-4', title: 'Build financial projections model', description: 'CFO creates 3-year revenue and cost projections', completed: false, dueDay: 30, category: 'financial-planning' },
+  { id: 'ft-10', squadId: 'squad-1', memberId: 'sm-3', title: 'Design go-to-market strategy', description: 'CMO outlines channels, messaging, and launch plan', completed: false, dueDay: 35, category: 'market-research' },
+  // Build & Test phase (days 41-65)
+  { id: 'ft-11', squadId: 'squad-1', memberId: 'sm-2', title: 'Build MVP prototype', description: 'CTO leads development of minimum viable product', completed: false, dueDay: 55, category: 'operations' },
+  { id: 'ft-12', squadId: 'squad-1', memberId: null, title: 'Test MVP with 5 pilot customers', description: 'Squad identifies and onboards 5 pilot users', completed: false, dueDay: 60, category: 'customer-discovery' },
+  // Market Validation phase (days 66-90)
+  { id: 'ft-13', squadId: 'squad-1', memberId: null, title: 'Collect Letters of Intent', description: 'Each member targets at least 2 LOIs from potential customers', completed: false, dueDay: 80, category: 'customer-discovery' },
+  { id: 'ft-14', squadId: 'squad-1', memberId: 'sm-1', title: 'Prepare final pitch deck', description: 'CEO prepares the graduation pitch presentation', completed: false, dueDay: 85, category: 'business-model' },
+  { id: 'ft-15', squadId: 'squad-1', memberId: null, title: 'Final squad performance review', description: 'Complete self and peer evaluations', completed: false, dueDay: 90, category: 'operations' },
+];
+
+export const MOCK_FORGE_KPIS: ForgeKPI[] = [
+  { id: 'kpi-1', memberId: 'sm-1', squadId: 'squad-1', metric: 'Stakeholder Meetings Held', target: 15, current: 0, unit: 'meetings' },
+  { id: 'kpi-2', memberId: 'sm-1', squadId: 'squad-1', metric: 'Strategic Decisions Documented', target: 10, current: 0, unit: 'decisions' },
+  { id: 'kpi-3', memberId: 'sm-2', squadId: 'squad-1', metric: 'Technical Feasibility Reports', target: 5, current: 0, unit: 'reports' },
+  { id: 'kpi-4', memberId: 'sm-2', squadId: 'squad-1', metric: 'Prototype Iterations', target: 3, current: 0, unit: 'versions' },
+  { id: 'kpi-5', memberId: 'sm-3', squadId: 'squad-1', metric: 'Customer Interviews Conducted', target: 20, current: 0, unit: 'interviews' },
+  { id: 'kpi-6', memberId: 'sm-3', squadId: 'squad-1', metric: 'Marketing Channels Tested', target: 5, current: 0, unit: 'channels' },
+  { id: 'kpi-7', memberId: 'sm-4', squadId: 'squad-1', metric: 'Financial Models Created', target: 3, current: 0, unit: 'models' },
+  { id: 'kpi-8', memberId: 'sm-4', squadId: 'squad-1', metric: 'Cost Analyses Completed', target: 5, current: 0, unit: 'analyses' },
+  { id: 'kpi-9', memberId: 'sm-5', squadId: 'squad-1', metric: 'Process Workflows Documented', target: 8, current: 0, unit: 'workflows' },
+  { id: 'kpi-10', memberId: 'sm-5', squadId: 'squad-1', metric: 'Supplier/Partner Contacts Made', target: 10, current: 0, unit: 'contacts' },
+];
+
+export const MOCK_LOIS: LetterOfIntent[] = [];
